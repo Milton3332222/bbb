@@ -1,177 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Home - Classroom</title>
-    <link
-      rel="icon"
-      type="image/png"
-      href="https://ssl.gstatic.com/classroom/favicon.png"
-    />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tProxy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: -3px;
+    }
+    .search-container {
+      display: flex;
+      flex-direction: row;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      padding: 10px;
+      max-width: 700px;
+      width: 100%;
+    }
+    .search-container input {
+      border: none;
+      width: 100%;
+      padding: 0px;
+      outline: none;
+      border-radius: 25px;
+    }
+    .search-container button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+    .links {
+      margin-top: 20px;
+      margin-left: 80px;
+    }
+    .links a {
+      margin-right: 80px;
+    }
+  </style>
+</head>
+<body>
+  <h1>tProxy v2</h1>
+  <div id="haha"></div>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <div class="search-container">
+    <input type="text" placeholder="Enter URL and hit the icon on the right..." maxlength="50">
+    <div class="search-icon">
+      <i class="fas fa-search" onclick="getSite()"></i>
+    </div>
+  </div>
 
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        background: #000;
+  <div class="links">
+    <a href="stargazers.html">Stargazers</a>
+    <a href="https://github.com/SevenworksDev/tProxy">GitHub + Setup tProxy for your own</a>
+    <a href="https://sevenworks.eu.org">More Projects</a>
+  </div>
+
+  <script>
+    var haha = document.getElementById("haha");
+
+    function lmao(){
+      var lol = [
+        'Super cool site that displays sites!',
+        'Bypassing web filters since a long time ago.',
+        'TitaniumNetwork sucks, cry about it.',
+        'Do your homework.',
+        'Too slow? Host it yourself instead of complaining non-stop about your issues.',
+        'The voices in my head told me to finish this site.',
+        'Breaking every bone in your body since 1979.',
+        'If you see ads on this site, this idiot is making money off my stuff.',
+        'how do i type',
+        'What do I even put here?',
+        'yoooooooooooooooooooo!',
+        'tProxy for dummies: Type in a URL below to access it.',
+        'Dear Teachers, This is TOTALLY a learning resource.',
+        'I got in trouble for this once.',
+        'Always check if a school chrome extension has a privacy policy, If not then you can punch your school administrators multiple times.',
+        'Cookie Clicker is useless, stop playing it.',
+        'How did this blow up again?',
+        'Submit an issue on GitHub if something broke in tProxy. (If a website being used via tProxy breaks, not our problem)',
+        'Do people use this anymore?',
+        '*cricket noises*'
+      ];
+
+      var hehe = Math.floor(Math.random() * lol.length);
+      haha.textContent = lol[hehe];
+    }
+
+    lmao()
+
+    function getSite() {
+      let inputValue = document.querySelector('input').value;
+
+      if (!inputValue.startsWith('http://') && !inputValue.startsWith('https://')) {
+        inputValue = 'http://' + inputValue;
       }
 
-      full-page-frame {
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
-    </style>
-  </head>
-
-// WORKER URL HERE (Currentley using the Default URL)
-
-  <body>
-    <full-page-frame src="https://google-classroom.sriail.workers.dev/"></full-page-frame>
-
-// WORKER URL HERE
-
-    <script>
-      class FullPageFrame extends HTMLElement {
-        connectedCallback() {
-          // Layer 1
-          const shadow1 = this.attachShadow({ mode: "closed" });
-
-          const layer1Container = document.createElement("div");
-          layer1Container.id = "layer1";
-
-          const style1 = document.createElement("style");
-          style1.textContent = `
-            #layer1 {
-              width: 100%;
-              height: 100%;
-              display: block;
-            }
-          `;
-
-          shadow1.appendChild(style1);
-          shadow1.appendChild(layer1Container);
-
-          // Layer 2
-          const shadow2 = layer1Container.attachShadow({ mode: "closed" });
-
-          const layer2Container = document.createElement("div");
-          layer2Container.id = "layer2";
-
-          const style2 = document.createElement("style");
-          style2.textContent = `
-            #layer2 {
-              width: 100%;
-              height: 100%;
-              display: block;
-            }
-          `;
-
-          shadow2.appendChild(style2);
-          shadow2.appendChild(layer2Container);
-
-          // Layer 3
-          const shadow3 = layer2Container.attachShadow({ mode: "closed" });
-
-          const layer3Container = document.createElement("div");
-          layer3Container.id = "layer3";
-
-          const style3 = document.createElement("style");
-          style3.textContent = `
-            #layer3 {
-              width: 100%;
-              height: 100%;
-              display: block;
-            }
-
-            iframe {
-              width: 100%;
-              height: 100%;
-              border: none;
-              display: block;
-              background: #fff;
-            }
-          `;
-
-          shadow3.appendChild(style3);
-          shadow3.appendChild(layer3Container);
-
-          // Create iframe
-          const iframe = document.createElement("iframe");
-          iframe.src = this.getAttribute("src");
-
-          // Allow fullscreen
-          iframe.setAttribute(
-            "allow",
-            "fullscreen; autoplay; clipboard-read; clipboard-write"
-          );
-
-          iframe.setAttribute("allowfullscreen", "");
-
-          iframe.setAttribute(
-            "sandbox",
-            [
-              "allow-scripts",
-              "allow-same-origin",
-              "allow-forms",
-              "allow-popups",
-              "allow-popups-to-escape-sandbox",
-              "allow-modals",
-              "allow-downloads",
-              "allow-presentation",
-              "allow-fullscreen"
-            ].join(" ")
-          );
-
-          iframe.setAttribute("referrerpolicy", "no-referrer");
-
-          layer3Container.appendChild(iframe);
-
-          // Send title + favicon to iframe via postMessage
-          iframe.addEventListener("load", () => {
-            try {
-              iframe.contentWindow.postMessage(
-                {
-                  type: "syncBranding",
-                  title: document.title,
-                  favicon:
-                    "https://ssl.gstatic.com/classroom/favicon.png"
-                },
-                "*"
-              );
-            } catch (e) {
-              console.warn("Brand sync failed:", e);
-            }
-          });
-
-          // Obfuscation
-          this.setAttribute("data-component", this.generateRandomId());
-          layer1Container.setAttribute(
-            "data-layer",
-            this.generateRandomId()
-          );
-          layer2Container.setAttribute(
-            "data-layer",
-            this.generateRandomId()
-          );
-          layer3Container.setAttribute(
-            "data-layer",
-            this.generateRandomId()
-          );
-        }
-
-        generateRandomId() {
-          return Math.random().toString(36).substring(2, 15);
-        }
-      }
-
-      customElements.define("full-page-frame", FullPageFrame);
-    </script>
-  </body>
+      const encodedValue = btoa(inputValue);
+      window.location.href = "/web/_" + encodedValue + '_/';
+    }
+  </script>
+</body>
 </html>
